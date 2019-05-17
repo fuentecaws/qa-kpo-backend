@@ -44,7 +44,29 @@ functions:
       - http:
           path: user/{id}
           method: delete
-  
-
+  kpoTrip:
+    handler: trip.handler
+    environment:
+      RDS_DATABASE: KAPPO
+      RDS_HOSTNAME: kpoinstance.clqeq71c0azs.us-east-1.rds.amazonaws.com
+      RDS_USERNAME: kpouser
+      RDS_PASSWORD: Kpopass2019
+      RDS_PORT: 3306
+    events:
+      - http:
+          path: trip
+          method: get
+      - http:
+          path: trip
+          method: post            
+      - http:
+          path: trip/{id}
+          method: put
+      - http:
+          path: trip/{id}
+          method: delete
+      - http:
+          path: trip/{id}/{id_user}
+          method: get
 plugins:
   - serverless-offline

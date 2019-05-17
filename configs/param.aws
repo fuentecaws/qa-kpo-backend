@@ -1,0 +1,21 @@
+provider:
+  name: aws
+  role: arn:aws:iam::525445453656:role/TestAPILambdaRDS
+  vpc: # vpc-9d50e1e7
+    securityGroupIds:
+      - sg-c3ecba81
+    subnetIds:
+      - subnet-91d8becd
+      - subnet-a02a498e
+      - subnet-bcd57d82
+      - subnet-776e5a3d
+      - subnet-a1cda8c6
+      - subnet-d4e9b6db
+  runtime: nodejs8.10
+  stage: qa
+  region: us-east-1
+  memorySize: 512
+
+---------------------------------------------------------------------
+
+RDS_HOSTNAME: kpoinstance.clqeq71c0azs.us-east-1.rds.amazonaws.com
