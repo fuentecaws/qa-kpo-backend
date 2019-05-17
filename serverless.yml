@@ -1,0 +1,50 @@
+# serverless.yml
+service: kpo-backend
+
+provider:
+  name: aws
+  role: arn:aws:iam::525445453656:role/TestAPILambdaRDS
+  vpc: # vpc-9d50e1e7
+    securityGroupIds:
+      - sg-c3ecba81
+    subnetIds:
+      - subnet-91d8becd
+      - subnet-a02a498e
+      - subnet-bcd57d82
+      - subnet-776e5a3d
+      - subnet-a1cda8c6
+      - subnet-d4e9b6db
+  runtime: nodejs8.10
+  stage: qa
+  region: us-east-1
+  memorySize: 512
+
+functions:
+  kpoUser:
+    handler: user.handler
+    environment:
+      RDS_DATABASE: KAPPO
+      RDS_HOSTNAME: kpoinstance.clqeq71c0azs.us-east-1.rds.amazonaws.com
+      RDS_USERNAME: kpouser
+      RDS_PASSWORD: Kpopass2019
+      RDS_PORT: 3306
+    events:
+      - http:
+          path: user
+          method: get
+      - http:
+          path: user/{id}
+          method: get
+      - http:
+          path: user
+          method: post
+      - http:
+          path: user/{id}
+          method: put
+      - http:
+          path: user/{id}
+          method: delete
+  
+
+plugins:
+  - serverless-offline
